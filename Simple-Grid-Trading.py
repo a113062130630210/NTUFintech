@@ -77,13 +77,13 @@ class Strategy(StrategyBase):
             self.total_transaction += 1
         
         # prevent no transaction for 4 days long
-        if self.total_trade > 100 and self.total_transaction == 0:
-            diff = close_price - self.average
-            self.average = close_price
-            self.upper += diff
-            self.lower += diff
-            self.buy_line = [ int((self.average - self.lower ) / ( self.number/2) * i )+ int(self.lower)\
-                            for i in range(int(self.number/2)) ]
-            self.sell_line = [ int((self.upper - self.average ) / ( self.number/2) * i )+ int(self.average)\
-                            for i in range(int(self.number/2)) ]
-            self.amount = (self['assets'][exchange][quote] / close_price ) * 0.95
+#         if self.total_trade > 100 and self.total_transaction == 0:
+#             diff = close_price - self.average
+#             self.average = close_price
+#             self.upper += diff
+#             self.lower += diff
+#             self.buy_line = [ int((self.average - self.lower ) / ( self.number/2) * i )+ int(self.lower)\
+#                             for i in range(int(self.number/2)) ]
+#             self.sell_line = [ int((self.upper - self.average ) / ( self.number/2) * i )+ int(self.average)\
+#                             for i in range(int(self.number/2)) ]
+#             self.amount = (self['assets'][exchange][quote] / close_price ) * 0.95
