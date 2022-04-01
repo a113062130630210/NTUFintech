@@ -17,7 +17,6 @@ class Strategy(StrategyBase):
         self.number = 60
         self.amount = 0
         self.proportion = 0.7
-        self.total_trade = 0
         self.total_transaction = 0
 
         self.buy_line = [ int((self.average - self.lower ) / ( self.number/2) * i )+ int(self.lower)\
@@ -68,7 +67,6 @@ class Strategy(StrategyBase):
         else:
             signal = 0
         # Log(str(close_price) + "  " + str(cur_line) + "  " + str(signal))
-        self.total_trade +=1
         if signal == 1:
             amount = self.amount
             if available_quote_amount >= amount * close_price:
