@@ -36,7 +36,12 @@ class Strategy(StrategyBase):
 
         target_currency_amount = self['assets'][exchange][quote]
         close_price = candles[exchange][pair][0]['close']
-
+        
+        base_balance = CA.get_balance(exchange, base)
+        quote_balance = CA.get_balance(exchange, quote)
+        available_base_amount = base_balance.available
+        available_quote_amount = quote_balance.available
+        
         singal = 0 #  1 for buy, -1 for sell
         cur_line = 0
         if close_price > self.average:
@@ -64,11 +69,11 @@ class Strategy(StrategyBase):
         if signal == 1:
                 CA.log('Buy ' + base)
                 self.last_type = 'buy'
-                CA.buy(exchange, pair, self.amount, CA.OrderType.MARKET)
+                CA.buy(exchange, pair, available_base_amount, CA.OrderType.MARKET)
                 self.total_transaction += 1
         # place sell order
         elif signal == -1:
             CA.log('Sell ' + base)
             self.last_type = 'sell'
-            CA.sell(exchange, pair, self.amount * (1- self.fee/100), CA.OrderType.MARKET)
+            CA.sell(exchange, pair, available_quote_amonut, CA.OrderType.MARKET)
             self.total_transaction += 1
