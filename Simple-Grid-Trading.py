@@ -1,4 +1,3 @@
-#Reference from Raxwade
 class Strategy(StrategyBase):
     def __init__(self):
         # strategy attributes
@@ -17,6 +16,7 @@ class Strategy(StrategyBase):
         self.fee = 0.07
         self.number = 60
         self.amount = 0
+        self.proportion = 0.2
         self.total_trade = 0
         self.total_transaction = 0
 
