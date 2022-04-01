@@ -1,7 +1,7 @@
 class Strategy(StrategyBase):
     def __init__(self):
         # strategy attributes
-        self.period = 60*60
+        self.period = 4*60*60
         self.subscribed_books = {
             'FTX': {
                 'pairs': ['BTC-USD'],
@@ -16,7 +16,7 @@ class Strategy(StrategyBase):
         self.fee = 0.07
         self.number = 60
         self.amount = 0
-        self.proportion = 0.2
+        self.proportion = 0.7
         self.total_trade = 0
         self.total_transaction = 0
 
