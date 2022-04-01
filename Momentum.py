@@ -49,11 +49,11 @@ class Strategy(StrategyBase):
         signal = 0
         
         # 5 continuous negative momentum
-        if momentum[-5] < 0 and momentum[-4] < 0 and momentum[-3] < 0 and momentum[-2] < 0 and momentum[-1] < 0: 
+        if momentum[-3] < 0 and momentum[-2] < 0 and momentum[-1] < 0: 
             signal = 1
         
         # 5 continuous positive momentum
-        if momentum[-5] > 0 and momentum[-4] > 0 and momentum[-3] > 0 and momentum[-2] > 0 and momentum[-1] > 0:
+        if momentum[-3] > 0 and momentum[-2] > 0 and momentum[-1] > 0:
             signal = -1
         
         # get available balance
