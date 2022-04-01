@@ -48,11 +48,11 @@ class Strategy(StrategyBase):
 
         signal = 0
         
-        # 5 continuous negative momentum
+        # 3 continuous negative momentum
         if momentum[-3] < 0 and momentum[-2] < 0 and momentum[-1] < 0: 
             signal = 1
         
-        # 5 continuous positive momentum
+        # 3 continuous positive momentum
         if momentum[-3] > 0 and momentum[-2] > 0 and momentum[-1] > 0:
             signal = -1
         
