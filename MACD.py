@@ -6,14 +6,14 @@ class Strategy(StrategyBase):
                 'pairs': ['ETH-USDT'],
             },
         }
-        self.period = 30 * 60
+        self.period = 4 * 60 * 60
         self.options = {}
 
         self.last_type = 'sell'
         self.fast_period = 12
         self.slow_period = 26
         self.signal_period = 9
-        self.proportion = 0.9
+        self.proportion = 0.95
  
 
     def on_order_state_change(self,  order):
