@@ -75,5 +75,5 @@ class Strategy(StrategyBase):
         elif signal == -1:
             CA.log('Sell ' + base)
             self.last_type = 'sell'
-            CA.sell(exchange, pair, available_quote_amonut, CA.OrderType.MARKET)
+            CA.sell(exchange, pair, available_quote_amount, CA.OrderType.MARKET)
             self.total_transaction += 1
