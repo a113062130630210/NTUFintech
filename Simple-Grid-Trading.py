@@ -10,19 +10,19 @@ class Strategy(StrategyBase):
         self.options = {}
 
         # define your attributes here
-        self.upper = 54000
-        self.lower = 40000
-        self.average = 47800
-        self.fee = 0.07
-        self.number = 60
-        self.amount = 0
-        self.proportion = 0.7
-        self.total_transaction = 0
+        self.upper = 54000 ###上界
+        self.lower = 40000 ###下界
+        self.average = 47800 ###
+        self.fee = 0.07  ###手續費比例
+        self.number = 60 ###60格網格
+        self.amount = 0 ###買幾棵
+        self.proportion = 0.7 ###買入比例
+        self.total_transaction = 0 ###總交易量
 
         self.buy_line = [ int((self.average - self.lower ) / ( self.number/2) * i )+ int(self.lower)\
-                             for i in range(int(self.number/2)) ]
+                             for i in range(int(self.number/2)) ] ### 切網格
         self.sell_line = [ int((self.upper - self.average ) / ( self.number/2) * i )+ int(self.average)\
-                             for i in range(int(self.number/2)) ]
+                             for i in range(int(self.number/2)) ] ### 切網格
         self.last_line = 0
         pass
 
@@ -59,10 +59,10 @@ class Strategy(StrategyBase):
                     cur_line = self.buy_line[idx-1]
                     break
         if self.last_line != cur_line:
-            if close_price > self.average:
+            if close_price > self.average: ### 賣
                 signal = -1
             else:
-                signal = 1
+                signal = 1                 ### 買
             self.last_line = cur_line
         else:
             signal = 0
