@@ -51,13 +51,18 @@ class Strategy(StrategyBase):
 
         signal = 0
         # MACD crosses the zero line from below - buy signal
-        if prev_macd < 0 and curr_macd > 0:
+        #if prev_macd <  and curr_macd > 0:
+        #    signal = 1
+        if prev_macd < curr_macd and curr_macd < 0:
             signal = 1
         
         # MACD crosses the zero line from above - sell signal
-        elif prev_macd > 0 and curr_macd < 0:
+        #elif prev_macd > 0 and curr_macd < 0:
+        #    signal = -1
+        elif prev_macd > curr_macd and curr_macd > 0:
             signal = -1
-
+        
+        
         # get available balance
         base_balance = CA.get_balance(exchange, base)
         quote_balance = CA.get_balance(exchange, quote)
