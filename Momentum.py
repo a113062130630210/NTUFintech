@@ -6,7 +6,7 @@ class Strategy(StrategyBase):
                 'pairs': ['ETH-USDT'],
             },
         }
-        self.period = 60 * 60
+        self.period = 4 * 60 * 60
         self.options = {}
 
         self.amount = 0
