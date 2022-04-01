@@ -1,11 +1,7 @@
 class Strategy(StrategyBase):
     def __init__(self):
         # strategy property
-        self.subscribed_books = {
-            'Bitfinex': {
-                'pairs': ['ETH-USDT'],
-            },
-        }
+        self.subscribed_books = {}
         self.period = 4 * 60 * 60
         self.options = {}
 
