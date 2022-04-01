@@ -16,7 +16,7 @@ class Strategy(StrategyBase):
         self.average = 47800
         self.fee = 0.07
         self.number = 60
-        self.amount = 1.5
+        self.amount = 0
         self.total_trade = 0
         self.total_transaction = 0
 
@@ -42,6 +42,9 @@ class Strategy(StrategyBase):
         available_base_amount = base_balance.available
         available_quote_amount = quote_balance.available
         
+        if self.amount == 0:
+            self.amount = np.round((available_quote_amount / close_price) * self.proportion, 5)
+            
         singal = 0 #  1 for buy, -1 for sell
         cur_line = 0
         if close_price > self.average:
@@ -67,13 +70,16 @@ class Strategy(StrategyBase):
         # Log(str(close_price) + "  " + str(cur_line) + "  " + str(signal))
         self.total_trade +=1
         if signal == 1:
+            amount = self.amount
+            if available_quote_amount >= amount * close_price:
                 CA.log('Buy ' + base)
                 self.last_type = 'buy'
-                CA.buy(exchange, pair, available_base_amount, CA.OrderType.MARKET)
+                CA.buy(exchange, pair, amount, CA.OrderType.MARKET)
                 self.total_transaction += 1
         # place sell order
         elif signal == -1:
-            CA.log('Sell ' + base)
-            self.last_type = 'sell'
-            CA.sell(exchange, pair, available_quote_amount, CA.OrderType.MARKET)
-            self.total_transaction += 1
+            if available_base_amount > 0.00001:
+                CA.log('Sell ' + base)
+                self.last_type = 'sell'
+                CA.sell(exchange, pair, available_base_amount, CA.OrderType.MARKET)
+                self.total_transaction += 1
